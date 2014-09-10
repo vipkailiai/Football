@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.my.Football.Football;
+import com.my.Football.Football;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

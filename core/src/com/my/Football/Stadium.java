@@ -9,16 +9,16 @@ import com.badlogic.gdx.utils.Array;
 public class Stadium {
     Array<Block> blocks = new Array<Block>();
 
+    Player player;
+
     public Array<Block> getBlocks() {
 
         return blocks;
     }
 
-/*    public Bob getBob() {
-
-        return bob;
-
-    }*/
+    public Player getPlayer() {
+        return player ;
+    }
 
     public Stadium() {
 
@@ -28,22 +28,22 @@ public class Stadium {
 
 
     private void createMockStadium() {
-      // bob = new Bob(new Vector2(7, 2));
+      player = new Player(new Vector2(7, 2));
 
-        for (int i = 0; i < 10; i++) {
-
-            blocks.add(new Block(new Vector2(i, 0)));
-            blocks.add(new Block(new Vector2(i, 7)));
-            if (i > 2)
-                blocks.add(new Block(new Vector2(i, 1)));
-        }
-        blocks.add(new Block(new Vector2(9, 2)));
-        blocks.add(new Block(new Vector2(9, 3)));
-        blocks.add(new Block(new Vector2(9, 4)));
-        blocks.add(new Block(new Vector2(9, 5)));
-        blocks.add(new Block(new Vector2(6, 3)));
-        blocks.add(new Block(new Vector2(6, 4)));
-        blocks.add(new Block(new Vector2(6, 5)));
+//        for (int i = 0; i < 10; i++) {
+//
+//            blocks.add(new Block(new Vector2(i, 0)));
+//            blocks.add(new Block(new Vector2(i, 7)));
+//            if (i > 2)
+//                blocks.add(new Block(new Vector2(i, 1)));
+//        }
+//        blocks.add(new Block(new Vector2(9, 2)));
+//        blocks.add(new Block(new Vector2(9, 3)));
+//        blocks.add(new Block(new Vector2(9, 4)));
+//        blocks.add(new Block(new Vector2(9, 5)));
+//        blocks.add(new Block(new Vector2(6, 3)));
+//        blocks.add(new Block(new Vector2(6, 4)));
+//        blocks.add(new Block(new Vector2(6, 5)));
     }
 }
 

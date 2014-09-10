@@ -3,43 +3,72 @@ package com.my.Football;
 /**
  * Created by Paulius on 08/09/2014.
  */
+        import com.badlogic.gdx.Gdx;
         import com.badlogic.gdx.graphics.Color;
         import com.badlogic.gdx.graphics.OrthographicCamera;
+        import com.badlogic.gdx.graphics.Texture;
+        import com.badlogic.gdx.graphics.g2d.SpriteBatch;
         import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
         import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
         import com.badlogic.gdx.math.Rectangle;
 
 public class StadiumRenderer {
+
+    private static final float CAMERA_WIDTH = 10f;
+    private static final float CAMERA_HEIGHT = 7f;
+
     private Stadium stadium;
     private OrthographicCamera camera;
 
-            /** for debug rendering **/
+    /** for debug rendering **/
     ShapeRenderer debugRenderer = new ShapeRenderer();
-    public StadiumRenderer(Stadium stadium) {
+
+    private Texture playerTexture;
+    private Texture stadiumTexture;
+    private SpriteBatch spriteBatch;
+    private boolean debug = false;
+    private int width;
+    private int height;
+    private float ppuX; // pixels per unit on the X axis
+    private float ppuY; // pixels per unit on the Y axis
+
+    public void setSize (int w, int h) {
+        this.width = w;
+        this.height = h;
+        ppuX = (float)width / CAMERA_WIDTH;
+        ppuY = (float)height / CAMERA_HEIGHT;
+    }
+
+
+    public StadiumRenderer(Stadium stadium, boolean debug) {
         this.stadium = stadium;
-        this.camera = new OrthographicCamera(10, 7);
-        this.camera.position.set(5, 3.5f, 0);
+        this.camera = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
+        this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
         this.camera.update();
+        this.debug = debug;
+        spriteBatch = new SpriteBatch();
+        loadTextures();
+    }
+
+    private void loadTextures() {
+        playerTexture = new  Texture(Gdx.files.internal("data/player.gif"));
+        stadiumTexture = new Texture(Gdx.files.internal("data/greenstr.gif"));
     }
 
     public void render() {
-        // render blocks
-        debugRenderer.setProjectionMatrix(camera.combined);
-        debugRenderer.begin(ShapeType.Line);
-        for (Block block : stadium.getBlocks()) {
-            Rectangle rect = block.bounds;
-            float x1 = block.position.x + rect.x;
-            float y1 = block.position.y + rect.y;
-            debugRenderer.setColor(new Color(1, 0, 0, 1));
-            debugRenderer.rect(x1, y1, rect.width, rect.height);
-        }
-        // render Bob
-       /* Bob bob = world.getBob();
-        Rectangle rect = bob.getBounds();
-        float x1 = bob.getPosition().x + rect.x;
-        float y1 = bob.getPosition().y + rect.y;
-        debugRenderer.setColor(new Color(0, 1, 0, 1));
-        debugRenderer.rect(x1, y1, rect.width, rect.height);
-        debugRenderer.end();*/
+        spriteBatch.begin();
+        drawStadium();
+        drawPlayer();
+        spriteBatch.end();
+        debugRenderer.end();
+    }
+
+    private void drawStadium() {
+        spriteBatch.draw(stadiumTexture,0,0);
+    }
+
+    private void drawPlayer() {
+        Player player = stadium.getPlayer();
+        spriteBatch.draw(playerTexture, player.position.x * ppuX, player.position.y * ppuY, Player.SIZE * ppuX, Player.SIZE * ppuY);
     }
 }
