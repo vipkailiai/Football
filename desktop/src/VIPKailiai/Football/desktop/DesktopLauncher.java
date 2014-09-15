@@ -1,8 +1,9 @@
-package com.my.Football.desktop;
+package VIPKailiai.Football.desktop;
 
+import VIPKailiai.Football.Game.Football;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.my.Football.Football;
+
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

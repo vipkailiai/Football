@@ -1,4 +1,4 @@
-package com.my.Football;
+package VIPKailiai.Football.Game.Models;
 
 /**
  * Created by Paulius on 09/09/2014.
@@ -11,19 +11,18 @@ public class Player {
         IDLE, WALKING
     }
 
-    public static final float SPEED = 4f;  // unit per second
-    static final float SIZE = 0.5f; // half a unit
+    public float Speed = 5f;  // unit per second
+    public float Size = 0.5f; // half a unit
 
-    Vector2     position = new Vector2();
-    Vector2     acceleration = new Vector2();
-    Vector2     velocity = new Vector2();
-    Rectangle   bounds = new Rectangle();
-    State       state = State.IDLE;
+    public Vector2     position = new Vector2();
+    public Vector2     acceleration = new Vector2();
+    public Vector2     velocity = new Vector2();
+    public Rectangle   bounds = new Rectangle();
+    public State       state = State.IDLE;
 
-    public Player(Vector2 position) {
+    public Player(Vector2 position, Rectangle bounds) {
         this.position = position;
-        this.bounds.height = SIZE;
-        this.bounds.width = SIZE;
+        this.bounds = bounds;
     }
 
     public void update(float delta) {

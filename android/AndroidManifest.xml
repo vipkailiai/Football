@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.my.Football.android"
+    package="VIPKailiai.Football.Game.android"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -12,8 +12,8 @@
         android:label="@string/app_name"
         android:theme="@style/GdxTheme" >
         <activity
-            android:name="com.my.Football.android.AndroidLauncher"
-            android:label="@string/app_name" 
+            android:name="vipkailiai.football.android.AndroidLauncher"
+            android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
             <intent-filter>

@@ -1,11 +1,11 @@
-package com.my.Football.android;
+package vipkailiai.football.android;
 
+import VIPKailiai.Football.Game.Football;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.my.Football.Football;
-import com.my.Football.Football;
+
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
