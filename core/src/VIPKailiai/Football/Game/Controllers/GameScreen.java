@@ -33,20 +33,17 @@ public class GameScreen implements Screen {
     public void show() {
 
         batch = new SpriteBatch();
-
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
         float aspectRatio = (float) Gdx.graphics.getWidth() / (float) Gdx.graphics.getHeight();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 10f*aspectRatio, 10f);
+        camera = new OrthographicCamera(300, 300 * (h / w));
         viewport = new ScreenViewport(camera);
         stage = new Stage(viewport, batch);
 
-        stadium = new Stadium();
+      //  stadium = new Stadium();
         touchPad = new TouchPad(stage, camera, batch);
         touchPad.create();
         stadiumRenderer = new StadiumRenderer(stadium, camera, batch, touchPad);
-       // stadiumController = new StadiumController(stadium);
-
-    //    Gdx.input.setInputProcessor(touchPad);
     }
 
     @Override

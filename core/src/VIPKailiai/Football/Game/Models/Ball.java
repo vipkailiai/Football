@@ -3,17 +3,16 @@ package VIPKailiai.Football.Game.Models;
 /**
  * Created by Paulius on 09/09/2014.
  */
-        import VIPKailiai.Libraries.BodyEditorLoader;
-        import com.badlogic.gdx.Gdx;
-        import com.badlogic.gdx.graphics.Camera;
-        import com.badlogic.gdx.graphics.Color;
-        import com.badlogic.gdx.graphics.Texture;
-        import com.badlogic.gdx.graphics.g2d.Sprite;
-        import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-        import com.badlogic.gdx.math.Vector2;
-        import com.badlogic.gdx.physics.box2d.*;
+import VIPKailiai.Libraries.BodyEditorLoader;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 
-public class Player {
+public class Ball {
 
     private World world;
     private Body body;
@@ -24,8 +23,9 @@ public class Player {
     private BodyEditorLoader loader;
     private Camera camera;
     Vector2 modelOrigin;
+    private ContactListener contactListener;
 
-    public Player(World world, Texture texture, SpriteBatch batch, Camera camera) {
+    public Ball(World world, Texture texture, SpriteBatch batch, Camera camera) {
 
         this.world = world;
         this.spriteBatch = batch;
@@ -36,34 +36,31 @@ public class Player {
 
         this.bodyDef = new BodyDef();
         this.bodyDef.type = BodyDef.BodyType.DynamicBody;
-        this.bodyDef.position.set(this.camera.viewportWidth / 2, this.camera.viewportHeight / 2);
+        this.bodyDef.position.set(this.camera.viewportWidth / 3, this.camera.viewportHeight / 3);
 
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(18f);
+        circleShape.setRadius(6f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
-        fixtureDef.density = .0001f;
+        fixtureDef.density = .00001f;
         fixtureDef.friction = 0;
-        fixtureDef.restitution = 0.0f;
-
+        fixtureDef.restitution = 0.4f;
 
         this.body = world.createBody(bodyDef);
         this.body.createFixture(fixtureDef);
 
-//        Fixture fixture = this.body.getFixtureList().first();
-//        fixture.setUserData(Color.CYAN);
+        //   this.loader.attachFixture(this.body, "PlayerRed", fixtureDef, 5f);
 
-
-     //   this.loader.attachFixture(this.body, "PlayerRed", fixtureDef, 5f);
-
-    //    this.modelOrigin = loader.getOrigin("PlayerRed",1f).cpy();
+        //    this.modelOrigin = loader.getOrigin("PlayerRed",1f).cpy();
         //   world.setGravity(new Vector2(0,0));
     }
 
     public void render(){
+
         this.body.setFixedRotation(true);
         this.body.setUserData(this);
+
 //          Vector2 playerPosition = this.body.getPosition();
 //          this.sprite = new Sprite(this.texture);
 //          this.sprite.setPosition(this.body.getPosition().x-19, this.body.getPosition().y-19);
@@ -86,7 +83,7 @@ public class Player {
     }
 
     public void setVelocity(Vector2 velocity){
-        this.body.applyForceToCenter(velocity,true);
+        this.body.setLinearVelocity(velocity);
     }
 
     public void setDamping(float damping){
