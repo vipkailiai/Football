@@ -40,7 +40,7 @@ public class Stadium {
 
         // World Bounds
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(16f/32f, 620f/32f));
+        outBodyDef.position.set(new Vector2(0f/32, 620f/32));
         outBodyLeft = world.createBody(outBodyDef);
         PolygonShape outBodyBox = new PolygonShape();
         outBodyBox.setAsBox(0f, 400f/32);
@@ -50,22 +50,56 @@ public class Stadium {
         outBodyDef.position.set(new Vector2(850f/32, 1020f/32));
         outBodyTop = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(850/32, 0f);
+        outBodyBox.setAsBox(850f/32f, 0f);
         outBodyTop.createFixture(outBodyBox, 0.0f);
 
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(1684f/32f, 620f/32f));
+        outBodyDef.position.set(new Vector2(1700f/32f, 620f/32f));
         outBodyRight = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(0f, 400f/32);
+        outBodyBox.setAsBox(0f, 400f/32f);
         outBodyRight.createFixture(outBodyBox, 0.0f);
 
+
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(850f/32, 220f/32));
+        outBodyDef.position.set(new Vector2(850f/32f, 220f/32f));
         outBodyBottom = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(850/32,0f);
+        outBodyBox.setAsBox(850f/32f,0f);
         outBodyBottom.createFixture(outBodyBox, 0.0f);
+
+        // Pitch Bounds
+        outBodyDef = new BodyDef();
+        outBodyDef.position.set(new Vector2(80f/32f, 620f/32f));
+        outBodyLeft = world.createBody(outBodyDef);
+        outBodyBox = new PolygonShape();
+        outBodyBox.setAsBox(0f, 336f/32f);
+        outBodyLeft.createFixture(outBodyBox, 0.0f);
+        outBodyLeft.setUserData(new Bound());
+
+        outBodyDef = new BodyDef();
+        outBodyDef.position.set(new Vector2(850f/32f, 956f/32f));
+        outBodyTop = world.createBody(outBodyDef);
+        outBodyBox = new PolygonShape();
+        outBodyBox.setAsBox(770f/32f, 0f);
+        outBodyTop.createFixture(outBodyBox, 0.0f);
+        outBodyTop.setUserData(new Bound());
+
+        outBodyDef = new BodyDef();
+        outBodyDef.position.set(new Vector2(1620f/32f, 620f/32f));
+        outBodyRight = world.createBody(outBodyDef);
+        outBodyBox = new PolygonShape();
+        outBodyBox.setAsBox(0f, 336f/32f);
+        outBodyRight.createFixture(outBodyBox, 0.0f);
+        outBodyRight.setUserData(new Bound());
+
+        outBodyDef = new BodyDef();
+        outBodyDef.position.set(new Vector2(850f/32f, 284f/32f));
+        outBodyBottom = world.createBody(outBodyDef);
+        outBodyBox = new PolygonShape();
+        outBodyBox.setAsBox(770f/32f,0f);
+        outBodyBottom.createFixture(outBodyBox, 0.0f);
+        outBodyBottom.setUserData(new Bound());
     }
 
     public void render(){
