@@ -61,6 +61,7 @@ public class StadiumRenderer {
         this.contactListener = new BallContactListener();
         this.world.setContactListener(contactListener);
         this.camera = camera;
+     //   this.camera.zoom = 50;
         this.touchpad = touchpad;
         this.stadiumModel = stadium;
         this.camera.update();
@@ -68,7 +69,7 @@ public class StadiumRenderer {
         loadTextures();
 
         this.playerModel = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera);
-        this.player2 = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera);
+      //  this.player2 = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera);
         this.ball = new Ball(this.world, this.playerTexture, this.spriteBatch, this.camera);
         this.stadiumModel = new Stadium(this.world, this.stadiumTexture, this.spriteBatch, this.camera);
 
@@ -78,9 +79,9 @@ public class StadiumRenderer {
     }
 
     private void loadTextures() {
-        this.playerTexture = new  Texture(Gdx.files.internal("data/suarezas.png"));
-        this.playerSprite = new Sprite(new  Texture(Gdx.files.internal("data/block.png")));
-        this.stadiumTexture = new Texture(Gdx.files.internal("data/greenpitch.png"));
+        this.playerTexture = new  Texture(Gdx.files.internal("suarezas.png"));
+        this.playerSprite = new Sprite(new  Texture(Gdx.files.internal("block.png")));
+        this.stadiumTexture = new Texture(Gdx.files.internal("greenpitch.png"));
     }
 
     public void render() {
@@ -95,19 +96,19 @@ public class StadiumRenderer {
 //            playerModel.applyLinearImpulse((new Vector2(1000000 * touchpad.getX(), 1000000 * touchpad.getY())), playerModel.getWorldCenter(), true);
 //            playerModel.applyLinearImpulse((new Vector2(1000000 * touchpad.getX(), 1000000 * touchpad.getY())), playerModel.getWorldCenter(), true);
             playerModel.setAcceleration();
-
-            playerModel.setVelocity(new Vector2(touchpad.getX()*100, touchpad.getY()*100));
+            playerModel.setVelocity(new Vector2(touchpad.getX()*.02f, touchpad.getY()*.02f));
         }
 
-        this.player2.setDamping(2);
+     //   this.player2.setDamping(2);
         playerModel.setDamping(2);
         this.ball.setDamping(1);
         this.ball.render();
         this.playerModel.render();
-
+        this.camera.position.set(playerModel.getPosition().x,playerModel.getPosition().y, 1);
+        this.camera.update();
         world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
         debugRenderer.render(world, camera.combined);
-           logger.log();
+        logger.log();
     }
 
 

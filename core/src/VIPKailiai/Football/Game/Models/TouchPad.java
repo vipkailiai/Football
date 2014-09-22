@@ -52,9 +52,9 @@ public class TouchPad implements ApplicationListener {
             //Create a touchpad skin
             touchpadSkin = new Skin();
             //Set background image
-            touchpadSkin.add("touchBackground", new Texture("data/touchBackground.png"));
+            touchpadSkin.add("touchBackground", new Texture("touchBackground.png"));
             //Set knob image
-            touchpadSkin.add("touchKnob", new Texture("data/touchKnob.png"));
+            touchpadSkin.add("touchKnob", new Texture("touchKnob.png"));
             //Create TouchPad Style
             touchpadStyle = new Touchpad.TouchpadStyle();
             //Create Drawable's from TouchPad skin
@@ -87,7 +87,7 @@ public class TouchPad implements ApplicationListener {
 
         @Override
         public void render() {
-            camera.update();
+
 
             //Move blockSprite with TouchPad
 //            blockSprite.setX(blockSprite.getX() + touchpad.getKnobPercentX()*blockSpeed);

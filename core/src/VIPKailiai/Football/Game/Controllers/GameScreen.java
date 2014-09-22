@@ -1,7 +1,6 @@
 package VIPKailiai.Football.Game.Controllers;
 
-import VIPKailiai.Football.Game.Models.Stadium;
-import VIPKailiai.Football.Game.Models.TouchPad;
+import VIPKailiai.Football.Game.Models.*;
 import VIPKailiai.Football.Game.ViewModels.StadiumRenderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -10,20 +9,23 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.*;
+
+
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  * Created by Paulius on 08/09/2014.
  */
 public class GameScreen implements Screen {
 
-    private OrthographicCamera camera;
+    private OrthographicCamera controlsCamera;
+    private OrthographicCamera gameCamera;
     private Stage stage;
     private SpriteBatch batch;
     private Viewport viewport;
-
     private Stadium stadium;
+
     private StadiumRenderer stadiumRenderer;
     private TouchPad touchPad;
 
@@ -33,17 +35,14 @@ public class GameScreen implements Screen {
     public void show() {
 
         batch = new SpriteBatch();
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        float aspectRatio = (float) Gdx.graphics.getWidth() / (float) Gdx.graphics.getHeight();
-        camera = new OrthographicCamera(300, 300 * (h / w));
-        viewport = new ScreenViewport(camera);
+        controlsCamera = new OrthographicCamera(Gdx.graphics.getWidth() / 32, Gdx.graphics.getHeight() / 32);
+        gameCamera = new OrthographicCamera(Gdx.graphics.getWidth() /32, Gdx.graphics.getHeight() /32);
+        viewport = new ScreenViewport(controlsCamera);
         stage = new Stage(viewport, batch);
-
-      //  stadium = new Stadium();
-        touchPad = new TouchPad(stage, camera, batch);
+        touchPad = new TouchPad(stage, controlsCamera, batch);
         touchPad.create();
-        stadiumRenderer = new StadiumRenderer(stadium, camera, batch, touchPad);
+
+        stadiumRenderer = new StadiumRenderer(stadium, gameCamera, batch, touchPad);
     }
 
     @Override

@@ -40,31 +40,31 @@ public class Stadium {
 
         // World Bounds
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(100, 620));
+        outBodyDef.position.set(new Vector2(16f/32f, 620f/32f));
         outBodyLeft = world.createBody(outBodyDef);
         PolygonShape outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(.1f, 400f);
+        outBodyBox.setAsBox(0f, 400f/32);
         outBodyLeft.createFixture(outBodyBox, 0.0f);
 
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(950f, 1020f));
+        outBodyDef.position.set(new Vector2(850f/32, 1020f/32));
         outBodyTop = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(850, .1f);
+        outBodyBox.setAsBox(850/32, 0f);
         outBodyTop.createFixture(outBodyBox, 0.0f);
 
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(1800, 620));
+        outBodyDef.position.set(new Vector2(1684f/32f, 620f/32f));
         outBodyRight = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(.1f, 400f);
+        outBodyBox.setAsBox(0f, 400f/32);
         outBodyRight.createFixture(outBodyBox, 0.0f);
 
         outBodyDef = new BodyDef();
-        outBodyDef.position.set(new Vector2(950f, 220f));
+        outBodyDef.position.set(new Vector2(850f/32, 220f/32));
         outBodyBottom = world.createBody(outBodyDef);
         outBodyBox = new PolygonShape();
-        outBodyBox.setAsBox(850, .1f);
+        outBodyBox.setAsBox(850/32,0f);
         outBodyBottom.createFixture(outBodyBox, 0.0f);
     }
 

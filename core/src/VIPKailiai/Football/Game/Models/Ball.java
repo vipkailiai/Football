@@ -6,6 +6,7 @@ package VIPKailiai.Football.Game.Models;
 import VIPKailiai.Libraries.BodyEditorLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -32,14 +33,14 @@ public class Ball {
         this.texture = texture;
         this.camera = camera;
 
-        this.loader = new BodyEditorLoader(Gdx.files.internal("data/block.json"));
+        this.loader = new BodyEditorLoader(Gdx.files.internal("block.json"));
 
         this.bodyDef = new BodyDef();
         this.bodyDef.type = BodyDef.BodyType.DynamicBody;
-        this.bodyDef.position.set(this.camera.viewportWidth / 3, this.camera.viewportHeight / 3);
+        this.bodyDef.position.set(this.camera.viewportWidth / 2 , this.camera.viewportHeight / 2);
 
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(6f);
+        circleShape.setRadius(.3f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
