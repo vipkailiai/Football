@@ -28,6 +28,7 @@ public class GameScreen implements Screen {
 
     private StadiumRenderer stadiumRenderer;
     private TouchPad touchPad;
+    private KickButton kickButton;
 
     public int Width, Height;
 
@@ -41,6 +42,8 @@ public class GameScreen implements Screen {
         stage = new Stage(viewport, batch);
         touchPad = new TouchPad(stage, controlsCamera, batch);
         touchPad.create();
+        kickButton = new KickButton(stage, controlsCamera);
+        kickButton.create();
 
         stadiumRenderer = new StadiumRenderer(stadium, gameCamera, batch, touchPad);
     }
@@ -51,6 +54,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stadiumRenderer.render();
         touchPad.render();
+       // kickButton.render();
         //   stadiumController.update(delta);
 
 
