@@ -24,7 +24,6 @@ public class GameScreen implements Screen {
     private Stage stage;
     private SpriteBatch batch;
     private Viewport viewport;
-    private Stadium stadium;
 
     private StadiumRenderer stadiumRenderer;
     private TouchPad touchPad;
@@ -42,7 +41,7 @@ public class GameScreen implements Screen {
         touchPad = new TouchPad(stage, controlsCamera, batch);
         touchPad.create();
 
-        stadiumRenderer = new StadiumRenderer(stadium, gameCamera, batch, touchPad);
+        stadiumRenderer = new StadiumRenderer(gameCamera, batch, touchPad);
     }
 
     @Override
