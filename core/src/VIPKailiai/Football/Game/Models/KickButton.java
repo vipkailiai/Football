@@ -1,5 +1,6 @@
 package VIPKailiai.Football.Game.Models;
 
+import VIPKailiai.Configuration.FootballConfiguration;
 import VIPKailiai.Football.Game.ViewModels.BallContactListener;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -45,8 +46,8 @@ public class KickButton implements ApplicationListener {
     @Override
     public void create() {
         buttonSkin = new Skin();
-        buttonSkin.add("button", new Texture("touchBackground.png"));
-        buttonSkin.add("button1", new Texture("block.png"));
+        buttonSkin.add("button", new Texture(FootballConfiguration.getGetAssetsPath()+"touchBackground.png"));
+        buttonSkin.add("button1", new Texture(FootballConfiguration.getGetAssetsPath()+"block.png"));
         buttonStyle = new Button.ButtonStyle();
         buttonStyle.up = buttonSkin.getDrawable("button");
         buttonStyle.down = buttonSkin.getDrawable("button1");

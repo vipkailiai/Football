@@ -4,6 +4,7 @@ package VIPKailiai.Football.Game.ViewModels;
  * Created by Paulius on 08/09/2014.
  */
 
+import VIPKailiai.Configuration.FootballConfiguration;
 import VIPKailiai.Football.Game.Models.Ball;
 import VIPKailiai.Football.Game.Models.Player;
 import VIPKailiai.Football.Game.Models.Stadium;
@@ -55,23 +56,26 @@ public class StadiumRenderer {
     }
 
 
-    public StadiumRenderer(Stadium stadium, OrthographicCamera camera, SpriteBatch spriteBatch, TouchPad touchpad) {
+    public StadiumRenderer( OrthographicCamera camera, SpriteBatch spriteBatch, TouchPad touchpad) {
 
         this.world  = new World(gravity, true);
         this.contactListener = new BallContactListener();
         this.world.setContactListener(contactListener);
         this.camera = camera;
-     //   this.camera.zoom = 50;
+        this.camera.zoom = .2f;
         this.touchpad = touchpad;
-        this.stadiumModel = stadium;
+        this.stadiumModel = new Stadium(this.world, this.stadiumTexture, this.spriteBatch, this.camera);
         this.camera.update();
         this.spriteBatch = spriteBatch;
         loadTextures();
 
-        this.playerModel = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera);
+        this.playerModel = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera, this.stadiumModel.getCenter());
+        this.ball = new Ball(this.world, this.playerTexture, this.spriteBatch, this.camera, this.stadiumModel.getCenter());
+
+
       //  this.player2 = new Player(this.world, this.playerTexture, this.spriteBatch, this.camera);
-        this.ball = new Ball(this.world, this.playerTexture, this.spriteBatch, this.camera);
-        this.stadiumModel = new Stadium(this.world, this.stadiumTexture, this.spriteBatch, this.camera);
+
+
 
         debugRenderer = new Box2DDebugRenderer();
         logger = new FPSLogger();
@@ -79,9 +83,9 @@ public class StadiumRenderer {
     }
 
     private void loadTextures() {
-        this.playerTexture = new  Texture(Gdx.files.internal("suarezas.png"));
-        this.playerSprite = new Sprite(new  Texture(Gdx.files.internal("block.png")));
-        this.stadiumTexture = new Texture(Gdx.files.internal("greenpitch.png"));
+        this.playerTexture = new  Texture(Gdx.files.internal(FootballConfiguration.getGetAssetsPath()+"suarezas.png"));
+        this.playerSprite = new Sprite(new  Texture(Gdx.files.internal(FootballConfiguration.getGetAssetsPath()+"block.png")));
+        this.stadiumTexture = new Texture(Gdx.files.internal(FootballConfiguration.getGetAssetsPath()+"greenpitch.png"));
     }
 
     public void render() {
@@ -93,10 +97,8 @@ public class StadiumRenderer {
         if(touchpad.getX() == 0 && touchpad.getY() == 0)
             playerModel.setDamping(2);
         else {
-//            playerModel.applyLinearImpulse((new Vector2(1000000 * touchpad.getX(), 1000000 * touchpad.getY())), playerModel.getWorldCenter(), true);
-//            playerModel.applyLinearImpulse((new Vector2(1000000 * touchpad.getX(), 1000000 * touchpad.getY())), playerModel.getWorldCenter(), true);
             playerModel.setAcceleration();
-            playerModel.setVelocity(new Vector2(touchpad.getX()*.02f, touchpad.getY()*.02f));
+            playerModel.setVelocity(new Vector2(touchpad.getX()*.00001f, touchpad.getY()*.00001f));
         }
 
      //   this.player2.setDamping(2);

@@ -1,5 +1,6 @@
 package VIPKailiai.Football.Game.Models;
 
+import VIPKailiai.Configuration.FootballConfiguration;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -52,9 +53,9 @@ public class TouchPad implements ApplicationListener {
             //Create a touchpad skin
             touchpadSkin = new Skin();
             //Set background image
-            touchpadSkin.add("touchBackground", new Texture("touchBackground.png"));
+            touchpadSkin.add("touchBackground", new Texture(FootballConfiguration.getGetAssetsPath()+"touchBackground.png"));
             //Set knob image
-            touchpadSkin.add("touchKnob", new Texture("touchKnob.png"));
+            touchpadSkin.add("touchKnob", new Texture(FootballConfiguration.getGetAssetsPath()+"touchKnob.png"));
             //Create TouchPad Style
             touchpadStyle = new Touchpad.TouchpadStyle();
             //Create Drawable's from TouchPad skin
@@ -71,13 +72,6 @@ public class TouchPad implements ApplicationListener {
             stage.addActor(touchpad);
             Gdx.input.setInputProcessor(stage);
 
-            //Create block sprite
-//            blockTexture = new Texture(Gdx.files.internal("block.png"));
-//            blockSprite = new Sprite(blockTexture);
-            //Set position to centre of the screen
-//            blockSprite.setPosition(Gdx.graphics.getWidth()/2-blockSprite.getWidth()/2, Gdx.graphics.getHeight()/2-blockSprite.getHeight()/2);
-
-//            blockSpeed = 5;
         }
 
         @Override

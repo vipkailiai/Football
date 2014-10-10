@@ -3,6 +3,7 @@ package VIPKailiai.Football.Game.Models;
 /**
  * Created by Paulius on 09/09/2014.
  */
+import VIPKailiai.Configuration.FootballConfiguration;
 import VIPKailiai.Libraries.BodyEditorLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -32,7 +33,7 @@ public class Player {
         this.texture = texture;
         this.camera = camera;
 
-        this.loader = new BodyEditorLoader(Gdx.files.internal("block.json"));
+        this.loader = new BodyEditorLoader(Gdx.files.internal(FootballConfiguration.getGetAssetsPath()+"block.json"));
 
         this.bodyDef = new BodyDef();
         this.bodyDef.type = BodyDef.BodyType.DynamicBody;
