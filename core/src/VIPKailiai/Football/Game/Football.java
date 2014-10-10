@@ -1,6 +1,7 @@
 package VIPKailiai.Football.Game;
 
 
+import VIPKailiai.Configuration.FootballConfiguration;
 import VIPKailiai.Football.Game.Controllers.ControlsScreen;
 import VIPKailiai.Football.Game.Controllers.GameScreen;
 import com.badlogic.gdx.Game;
@@ -11,11 +12,11 @@ import com.badlogic.gdx.Game;
 
 public class Football extends Game{
 
+    public FootballConfiguration configuration;
+
     @Override
     public void create()
     {
-     //   setScreen(new ControlsScreen());
         setScreen(new GameScreen());
-
     }
 }
