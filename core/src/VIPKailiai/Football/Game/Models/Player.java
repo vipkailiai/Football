@@ -24,6 +24,7 @@ public class Player {
     private BodyEditorLoader loader;
     private Camera camera;
     Vector2 modelOrigin;
+    public static boolean iskicked = false;
 
     public Player(World world, Texture texture, SpriteBatch batch, Camera camera) {
 
@@ -32,7 +33,7 @@ public class Player {
         this.texture = texture;
         this.camera = camera;
 
-        this.loader = new BodyEditorLoader(Gdx.files.internal("block.json"));
+        this.loader = new BodyEditorLoader(Gdx.files.internal("data/block.json"));
 
         this.bodyDef = new BodyDef();
         this.bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -43,7 +44,7 @@ public class Player {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
-        fixtureDef.density = .0001f;
+        fixtureDef.density = .0003f;
         fixtureDef.friction = 0;
         fixtureDef.restitution = 0.0f;
 
@@ -98,6 +99,10 @@ public class Player {
     }
 
     public void setAcceleration(){
+
+    }
+    public static boolean getKicked(){
+        return iskicked;
 
     }
 }
