@@ -23,7 +23,7 @@ public class Player {
     private Texture texture;
     private BodyEditorLoader loader;
     private Camera camera;
-    Vector2 modelOrigin;
+    public static boolean iskicked = false;
 
     public Player(World world, Texture texture, SpriteBatch batch, Camera camera, Vector2 position) {
 
@@ -101,6 +101,11 @@ public class Player {
     }
 
     public void setAcceleration(){
+
+    }
+
+    public static boolean getKicked(){
+        return iskicked;
 
     }
 }
