@@ -3,15 +3,15 @@ package VIPKailiai.Football.Game.Models;
 /**
  * Created by Paulius on 09/09/2014.
  */
-        import VIPKailiai.Libraries.BodyEditorLoader;
-        import com.badlogic.gdx.Gdx;
-        import com.badlogic.gdx.graphics.Camera;
-        import com.badlogic.gdx.graphics.Color;
-        import com.badlogic.gdx.graphics.Texture;
-        import com.badlogic.gdx.graphics.g2d.Sprite;
-        import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-        import com.badlogic.gdx.math.Vector2;
-        import com.badlogic.gdx.physics.box2d.*;
+import VIPKailiai.Libraries.BodyEditorLoader;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 
 public class Player {
 
@@ -24,27 +24,29 @@ public class Player {
     private BodyEditorLoader loader;
     private Camera camera;
     Vector2 modelOrigin;
-    public static boolean iskicked = false;
 
-    public Player(World world, Texture texture, SpriteBatch batch, Camera camera) {
+    public Player(World world, Texture texture, SpriteBatch batch, Camera camera, Vector2 position) {
 
         this.world = world;
         this.spriteBatch = batch;
         this.texture = texture;
         this.camera = camera;
 
-        this.loader = new BodyEditorLoader(Gdx.files.internal("data/block.json"));
+        this.loader = new BodyEditorLoader(Gdx.files.internal("block.json"));
 
         this.bodyDef = new BodyDef();
         this.bodyDef.type = BodyDef.BodyType.DynamicBody;
-        this.bodyDef.position.set(this.camera.viewportWidth / 2, this.camera.viewportHeight / 2);
+
+        position = new Vector2(position.x - position.x/2, position.y);
+
+        this.bodyDef.position.set(position);
 
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(1f);
+        circleShape.setRadius(1f/32f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
-        fixtureDef.density = .0003f;
+        fixtureDef.density = .0001f;
         fixtureDef.friction = 0;
         fixtureDef.restitution = 0.0f;
 
@@ -56,9 +58,9 @@ public class Player {
 //        fixture.setUserData(Color.CYAN);
 
 
-     //   this.loader.attachFixture(this.body, "PlayerRed", fixtureDef, 5f);
+        //   this.loader.attachFixture(this.body, "PlayerRed", fixtureDef, 5f);
 
-    //    this.modelOrigin = loader.getOrigin("PlayerRed",1f).cpy();
+        //    this.modelOrigin = loader.getOrigin("PlayerRed",1f).cpy();
         //   world.setGravity(new Vector2(0,0));
     }
 
@@ -99,10 +101,6 @@ public class Player {
     }
 
     public void setAcceleration(){
-
-    }
-    public static boolean getKicked(){
-        return iskicked;
 
     }
 }
